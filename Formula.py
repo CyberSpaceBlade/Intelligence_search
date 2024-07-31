@@ -122,8 +122,8 @@ def generate_or_update(excel_name1, excel_name2, target_excel):  #主要功能�
     return "情报表更新完成!总用时" + str(int(end - start)) + "s"
 
 
-def ip_search(ip):
-    ip_list = set(ip_import('Intelligence.xlsx'))
+def ip_search(ip,file_path):
+    ip_list = set(ip_import(file_path))
     if ip in ip_list:
         res = "命中情报!"
     else:
