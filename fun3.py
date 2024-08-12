@@ -19,28 +19,22 @@ def display_result(file_path):
 
 
 def Xlsx_File_suffix_check(file_path):
-    if file_path == "":
-        res = "请选择合适的情报表!"
+    excel_name = file_path.split("/")[-1]
+    suffix = str(excel_name).split(".")[-1]
+    if suffix != "xlsx":
+        res = "请选择xlsx格式的情报表!"
     else:
-        excel_name = file_path.split("/")[-1]
-        suffix = str(excel_name).split(".")[-1]
-        if suffix != "xlsx":
-            res = "请选择xlsx格式的情报表!"
-        else:
-            res = excel_name
+        res = excel_name
     return res
 
 
 def Txt_File_suffix_check(file_path):
-    if file_path == "":
-        res = "请选择合适的情报表!"
+    excel_name = file_path.split("/")[-1]
+    suffix = str(excel_name).split(".")[-1]
+    if suffix != "txt":
+        res = "请选择txt格式的情报表!"
     else:
-        excel_name = file_path.split("/")[-1]
-        suffix = str(excel_name).split(".")[-1]
-        if suffix != "txt":
-            res = "请选择txt格式的情报表!"
-        else:
-            res = excel_name
+        res = excel_name
     return res
 
 
@@ -68,6 +62,10 @@ class Query(QObject):
         self.name2 = file_path
 
     def pushButton_3_clicked(self):
+        self.ui.lineEdit_2.setText("")
+        QTimer.singleShot(100, lambda: self.display_result())
+
+    def display_result(self):
         if self.name1 is None:
             self.ui.lineEdit_2.setText("未设定情报表!")
         elif self.name2 is None:
@@ -88,7 +86,10 @@ class Query(QObject):
         with open(self.name2, "a", encoding='UTF-8') as f:
             f.write("\n" * 2 + "共计" + str(len(mingzhong)) + "个IP命中情报" + "\n")
             if len(mingzhong) > 0:
-                f.write("命中情报的IP为:" + str(mingzhong) + "\n" * 2)
+                f.write("命中情报的IP为:" + "\n")
+                for ip in mingzhong:
+                    f.write(str(ip)+"\n")
+            f.write("\n")
 
             f.write("共计" + str(len(res)) + "个IP格式正确但未命中情报" + "\n")
             if len(res) > 0:
@@ -105,8 +106,8 @@ class Query(QObject):
 
         f.close()
         self.ui.lineEdit_2.setText("结果在" + new_excel_name + "末尾,请查看!")
-        pass
-        QTimer.singleShot(1000, lambda: display_result(self.name2))
+        QTimer.singleShot(500, lambda: display_result(self.name2))
+
 
 
 def main():

@@ -5,6 +5,8 @@ from PySide6.QtUiTools import QUiLoader
 import fun1
 import fun2
 import fun3
+import fun4
+
 
 class Mainwindow:
     def __init__(self):
@@ -13,6 +15,7 @@ class Mainwindow:
         self.ui.pushButton.clicked.connect(self.pushButton_clicked)
         self.ui.pushButton_2.clicked.connect(self.pushButton_2_clicked)
         self.ui.pushButton_3.clicked.connect(self.pushButton_3_clicked)
+        self.ui.pushButton_4.clicked.connect(self.pushButton_4_clicked)
 
     def pushButton_clicked(self):
         self.fun1 = fun1.Query()
@@ -26,9 +29,13 @@ class Mainwindow:
         self.fun3 = fun3.Query()
         self.fun3.ui.show()
 
+    def pushButton_4_clicked(self):
+        self.fun4 = fun4.Query()
+        self.fun4.ui.show()
+
 
 def main():
-    loader=QUiLoader()
+    loader = QUiLoader()
     app = QApplication(sys.argv)
     mainwindow = Mainwindow()
     mainwindow.ui.show()

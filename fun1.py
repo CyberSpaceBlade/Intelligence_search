@@ -7,15 +7,12 @@ import Formula
 
 
 def Xlsx_File_suffix_check(file_path):
-    if file_path == "":
-        res = "请选择合适的情报表!"
+    excel_name = file_path.split("/")[-1]
+    suffix = str(excel_name).split(".")[-1]
+    if suffix != "xlsx":
+        res = "请选择xlsx格式的情报表!"
     else:
-        excel_name = file_path.split("/")[-1]
-        suffix = str(excel_name).split(".")[-1]
-        if suffix != "xlsx":
-            res = "请选择xlsx格式的情报表!"
-        else:
-            res = excel_name
+        res = excel_name
     return res
 
 
@@ -28,8 +25,19 @@ class Query(QObject):
         self.ui.pushButton_2.clicked.connect(self.pushButton_2_clicked)
 
     def pushButton_clicked(self):
+        self.ui.lineEdit_2.setText("")
+        if self.name1 is None:
+            try:
+                self.name1 = 'Inte-All.xlsx'
+                self.ui.lineEdit_3.setText("默认")
+            except:
+                self.ui.lineEdit_3.setText("未指定情报表!")
+
+        QTimer.singleShot(100, lambda: self.display_result())
+
+    def display_result(self):
         ip = str(self.ui.lineEdit.text()).strip()
-        res = Formula.ip_search(ip,self.name1)
+        res = Formula.ip_search(ip, self.name1)
         self.ui.lineEdit_2.setText(str(res))
         pass
 
@@ -37,7 +45,6 @@ class Query(QObject):
         file_path, _ = QFileDialog.getOpenFileName(QMainWindow(), "选择情报表")
         res = Xlsx_File_suffix_check(file_path)
         self.ui.lineEdit_3.setText(res)
-        self.ui.lineEdit_2.setText("")
         self.name1 = file_path
 
 

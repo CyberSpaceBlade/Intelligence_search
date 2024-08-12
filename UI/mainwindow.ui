@@ -17,9 +17,9 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>30</x>
       <y>100</y>
-      <width>281</width>
+      <width>131</width>
       <height>41</height>
      </rect>
     </property>
@@ -35,9 +35,9 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>220</y>
-      <width>281</width>
+      <x>30</x>
+      <y>160</y>
+      <width>291</width>
       <height>41</height>
      </rect>
     </property>
@@ -76,9 +76,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>160</y>
-      <width>281</width>
+      <x>370</x>
+      <y>100</y>
+      <width>151</width>
       <height>41</height>
      </rect>
     </property>
@@ -89,6 +89,24 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </property>
     <property name="text">
      <string>批量化查询IP</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>100</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>单个IP定位</string>
     </property>
    </widget>
   </widget>
